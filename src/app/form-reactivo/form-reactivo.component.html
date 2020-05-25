@@ -1,0 +1,47 @@
+<div class="container d-flex justify-content-center">
+    <form [formGroup]="contactForm" class="col-6" (ngSubmit)="onSaveForm()">
+        <h1 class="mt-5 bg-info rounded text-center text-white">Contacta Us</h1>
+        <div class="form-group">
+          <label for="Name">Name:</label>
+          <input type="text" id="Name" formControlName="name" class="form-control" placeholder="">
+        </div>
+
+        <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div class="container-error-message" *ngIf="name.errors.required">
+            El nombre es requerido
+          </div>
+          <div class="container-error-message" *ngIf="name.errors.minlength">
+            Debe contener al menos 5 caracteres
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input type="text" id="Email" formControlName="email" class="form-control" placeholder="">
+        </div>
+        <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div class="container-error-message" *ngIf="email.errors.required">
+            El email es requerido
+          </div>
+          <div class="container-error-message" *ngIf="email.errors.minlength">
+            Debe contener al menos 5 caracteres
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Message</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="message" rows="3"></textarea>
+        </div>
+        <div class="alert-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
+          <div class="container-error-message" *ngIf="message.errors.pattern">
+            Debe haber un mensaje
+          </div>
+          <div class="container-error-message" *ngIf="message.errors.maxlength">
+            No puede tener mas de 100 caracteres
+          </div>
+        </div>
+          <div class="form-group">
+            <style></style>
+            <button style="" [disabled]="contactForm.valid" type="submit" class="btn-info btn btn-block">Send</button>
+          </div>
+    </form>
+</div>
